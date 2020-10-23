@@ -1,0 +1,8 @@
+client_c_tcp
+client_c_tcp.c
+client_c_tcp.c~
+cout.txt
+out.txt
+server_c_tcp
+server_c_tcp.c
+server_c_tcp.c~
