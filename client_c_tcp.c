@@ -4,20 +4,24 @@
 #include <string.h> 
 #include <sys/socket.h>
 #define MAX 80 
-#define SA struct sockaddr 
+#define SA struct sockaddr
+// Function for reading output in buffer
 void func(int sockfd) 
 {
 	char buff[MAX]; 
 	int n; 
 	for (;;) { 
-		bzero(buff, sizeof(buff)); 
+		bzero(buff, sizeof(buff));
+		//Prompt user for command to send to server
 		printf("Enter command: "); 
 		n = 0; 
 		while ((buff[n++] = getchar()) != '\n') 
 			; 
 		write(sockfd, buff, sizeof(buff)); 
-		bzero(buff, sizeof(buff)); 
+		bzero(buff, sizeof(buff));
+		//Read back the buffer from server which will be output from the command we sent
 		read(sockfd, buff, sizeof(buff));
+		//Write the output into our own file "cout.txt"
 		FILE *f2 = fopen("cout.txt","w");
 		if(f2 == NULL)
 		  {
@@ -40,6 +44,7 @@ int main()
 	struct sockaddr_in servaddr, cli; 
 	int PORT = 8080;
 	char ipAddr[]="";
+	// code to receive IP or Port as user input **NEEDS TO BE FIXED, I THINK ITS MESSING WITH THE BUFFER BEING SENT TO THE SREVER **
 	//	printf("Enter server name or IP address: ");
 	int n = 0;
 	//while((ipAddr[n++] = getchar()) != '\n')
